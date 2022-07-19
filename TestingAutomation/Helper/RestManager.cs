@@ -1,20 +1,18 @@
-﻿
+﻿using RestSharp;
 
-using RestSharp;
-
-namespace TestFramework.Helper.RestSharpHelper
+namespace TestFramework.Helper
 {
-    public class APIHelper
+    public class RestManager
     {
         public RestClient restClient;
         public RestRequest restRequest;
         public string baseURL;
 
-        public APIHelper(string baseURL)
+        public RestManager(string baseURL)
         {
             this.baseURL = baseURL;
         }
-    
+
         public RestClient SetURL(string endpoint)
         {
             var url = baseURL + endpoint;

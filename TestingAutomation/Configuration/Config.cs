@@ -1,4 +1,4 @@
-﻿using TestingAutomation.Driver;
+﻿using TestFramework.Selenium.WebDriver;
 
 namespace TestFramework.Configuration
 {
@@ -9,6 +9,9 @@ namespace TestFramework.Configuration
         public static string? Customer { get; set; }
         public static string? PTInvoiceEndpoint { get; set; }
         public static string? PtInvoiceDownloadPDF { get; set; }
+
+        public static string? PDFDownloadsFolder { get; set; }
+        public static string? PDFParsedToTextFolder { get; set; }
         public static BrowserType BrowserType { get; set; }
     }
 }

@@ -1,22 +1,19 @@
 ﻿using OpenQA.Selenium;
-using TestFramework.Extensions;
 using TestFramework.Selenium.Interfaces;
+using TestProject.Pages.Base;
 
 namespace TestProject.Pages
 {
-    public class Payment
+    public class Payment : BasePage
     {
-        private readonly IDriverProxy driver;
-        public Payment(IDriverProxy driver)
+        public Payment(IDriverProxy driver) : base(driver)
         {
-            this.driver = driver;
         }
 
         #region Elements
-        private IWebElement CashPaymentButton => driver.FindElement(By.XPath("//button[@id='btn-payment-method-1']"), 30);
-        private IWebElement EndInvoiceButton => driver.FindElement(By.XPath("//button[@id='btn-Payment-EOP']"), 30);
-        private IWebElement NextInvoiceButton => driver.FindElement(By.XPath("//button[@id='btn-next-invoice']"), 60);
-
+        private IWebElement CashPaymentButton => Driver.FindElement(By.XPath("//button[@id='btn-payment-method-1']"), 30);
+        private IWebElement EndInvoiceButton => Driver.FindElement(By.XPath("//button[@id='btn-Payment-EOP']"), 30);
+        private IWebElement NextInvoiceButton => Driver.FindElement(By.XPath("//button[@id='btn-next-invoice']"), 60);
         #endregion
 
         #region Actions

@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace TestingAutomation.Driver.Interfaces
+namespace TestFramework.Selenium.Interfaces
 {
     public interface IDriverType
     {

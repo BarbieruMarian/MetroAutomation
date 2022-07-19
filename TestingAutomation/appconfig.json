@@ -1,10 +1,12 @@
 ﻿{
-  "DemoBranch": {
+  "Portugal": {
     "mPosAirPT": "https://ui.lis11masu001000.mpos.madm.net/login",
     "superviser": "001333813011",
     "customer": "6200000100035815011056",
     "pTInvoiceEndpoint": "https://invoice.lis11masu001000.mpos.madm.net",
     "ptInvoiceDownloadPDF": "https://invoice.lis11masu001000.mpos.madm.net/invoices/",
+    "pDFParsedToTextFolder": "C:/PDF/",
+    "pDFDownloadsFolder": "C:/Users/m.barbieru/Downloads/",
     "BrowserType": "Chrome"
   }
 }

@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
-using TestingAutomation.Driver;
+using TestFramework.Selenium.WebDriver;
 
 namespace TestFramework.Configuration
 {
@@ -18,6 +18,9 @@ namespace TestFramework.Configuration
             Config.Customer = configurationRoot.GetSection(jsonSection).Get<ConfigSettings>().Customer;
             Config.PTInvoiceEndpoint = configurationRoot.GetSection(jsonSection).Get<ConfigSettings>().PTInvoiceEndpoint;
             Config.PtInvoiceDownloadPDF = configurationRoot.GetSection(jsonSection).Get<ConfigSettings>().PtInvoiceDownloadPDF;
+            Config.PDFDownloadsFolder = configurationRoot.GetSection(jsonSection).Get<ConfigSettings>().PDFDownloadsFolder;
+            Config.PDFParsedToTextFolder = configurationRoot.GetSection(jsonSection).Get<ConfigSettings>().PDFParsedToTextFolder;
+
             var browserType = configurationRoot.GetSection(jsonSection).Get<ConfigSettings>().BrowserType;
             switch (browserType)
             {

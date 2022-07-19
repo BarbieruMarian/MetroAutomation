@@ -1,43 +1,38 @@
 ﻿using OpenQA.Selenium;
 using TestFramework.Configuration;
-using TestFramework.Extensions;
 using TestFramework.Helper;
 using TestFramework.Selenium.Interfaces;
+using TestProject.Pages.Base;
 
 namespace TestProject.Pages
 {
-    public class Login
+    public class Login : BasePage
     {
-        private readonly IDriverProxy driver;
-        public Login(IDriverProxy driver)
+        public Login(IDriverProxy driver) : base(driver)
         {
-            this.driver = driver;
         }
 
         #region Elements
-        private IWebElement KeyboardButton => driver.FindElement(By.XPath("//button[@id='button-use-keypad']"), 30);
-        private IWebElement EmployeeIDInput => driver.FindElement(By.XPath("//input[@class='css-1etmqih']"), 30);
-        private IWebElement CustomerIDInput => driver.FindElement(By.XPath("//input[@id='customerBarcode']"), 30);
-        private IWebElement OkLoginButton => driver.FindElement(By.XPath("//button[@id='on-screen-keypad-key-ok']"), 30);
-        private IWebElement PasswordBtn1 => driver.FindElement(By.XPath("//button[@id='on-screen-keypad-key-1']"), 30);
-        private IWebElement PasswordBtn2 => driver.FindElement(By.XPath("//button[@id='on-screen-keypad-key-2']"), 30);
-        private IWebElement PasswordBtn3 => driver.FindElement(By.XPath("//button[@id='on-screen-keypad-key-3']"), 30);
-        private IWebElement LoginAssertion => driver.FindElement(By.XPath("//div[@class='m-media-visual']"), 30);
-        private IWebElement CustomerAssertion => driver.FindElement(By.XPath("//*[text()='Customer Identification']"), 30);
-
-        
+        private IWebElement KeyboardButton => Driver.FindElement(By.XPath("//button[@id='button-use-keypad']"), 30);
+        private IWebElement EmployeeIDInput => Driver.FindElement(By.XPath("//input[@class='css-1etmqih']"), 30);
+        private IWebElement CustomerIDInput => Driver.FindElement(By.XPath("//input[@id='customerBarcode']"), 30);
+        private IWebElement OkLoginButton => Driver.FindElement(By.XPath("//button[@id='on-screen-keypad-key-ok']"), 30);
+        private IWebElement PasswordBtn1 => Driver.FindElement(By.XPath("//button[@id='on-screen-keypad-key-1']"), 30);
+        private IWebElement PasswordBtn2 => Driver.FindElement(By.XPath("//button[@id='on-screen-keypad-key-2']"), 30);
+        private IWebElement PasswordBtn3 => Driver.FindElement(By.XPath("//button[@id='on-screen-keypad-key-3']"), 30);
+        private IWebElement LoginAssertion => Driver.FindElement(By.XPath("//div[@class='m-media-visual']"), 30);
+        private IWebElement CustomerAssertion => Driver.FindElement(By.XPath("//*[text()='Customer Identification']"), 30);       
         #endregion
 
         #region Actions
-
         public void GoTo()
         {
-            driver.Navigate(Config.MPOSAirPT);
-            SettingLocalStorage.Setup(driver);
+            Driver.Navigate(Config.MPOSAirPT);
+            LocalStorage.Setup(Driver);
         }
         public void LoginWithSuperviser(string user)
         {
-            driver.WaitForElementToBeClickable(KeyboardButton);   
+            Driver.WaitForElementToBeClickable(KeyboardButton);   
             KeyboardButton.Click();
             Thread.Sleep(500);
             EmployeeIDInput.SendKeys(user);
@@ -55,20 +50,20 @@ namespace TestProject.Pages
 
         public void LoginWithCustomer(string user)
         {
-            driver.WaitForElementToBeClickable(CustomerIDInput);
+            Driver.WaitForElementToBeClickable(CustomerIDInput);
             CustomerIDInput.SendKeys(user);
             OkLoginButton.Click();
         }
 
         public bool IsAtLogin()
         {
-            driver.WaitForElementToBeDisplayed(LoginAssertion);
+            Driver.WaitForElementToBeDisplayed(LoginAssertion);
             return LoginAssertion.Displayed;
         } 
 
         public bool IsAtCustomerLogin()
         {
-            driver.WaitForElementToBeDisplayed(CustomerAssertion);
+            Driver.WaitForElementToBeDisplayed(CustomerAssertion);
             return CustomerAssertion.Displayed;
         }
         #endregion

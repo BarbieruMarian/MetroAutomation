@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using TestFramework.Configuration;
-using TestingAutomation.Driver;
-using TestingAutomation.Driver.Interfaces;
+using TestFramework.Selenium.Interfaces;
+using TestFramework.Selenium.WebDriver;
 
 namespace TestProject
 {
@@ -9,7 +8,6 @@ namespace TestProject
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IDriverFixture, DriverFixture>();
             services.AddScoped<IDriverType, DriverType>();
         }
     }

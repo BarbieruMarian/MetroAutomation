@@ -14,12 +14,9 @@
                                          "Local de carga: QUINTA DO PAIZINHO CARNAXIDE\n" +
                                          "Local de descarga: Rua Joao De Santarem 3 2675-595 Odivelas PRT\n";
 
-        public static string Header3 = "PcIC-Processado por Programa Certificado nº  1708/AT";
+        public static string Header3 = "Processado por Programa Certificado nº  1708/AT";
 
-        public static string ClientProductHeader = "ASSO DE SURDOS DE LISBOA\n" +
-                                                   " Rua Joao De Santarem 3  1Esq\n" +
-                                                   "PRT 2675-595 Odivelas\n" +
-                                                   "Nº cliente: 1 035815 1 1 KY \n" +
+        public static string ClientProductHeader = "Nº cliente: 1 035815 1 1 KY \n" +
                                                    "N.I.F. do Cliente : PT510449344\n" +
                                                    "7070";
 

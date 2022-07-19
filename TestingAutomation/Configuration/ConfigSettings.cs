@@ -19,6 +19,12 @@ namespace TestFramework.Configuration
         [JsonProperty("ptInvoiceDownloadPDF")]
         public string ? PtInvoiceDownloadPDF { get; set; }
 
+        [JsonProperty("pDFDownloadsFolder")]
+        public string? PDFDownloadsFolder { get; set; }
+
+        [JsonProperty("pDFParsedToTextFolder")]
+        public string? PDFParsedToTextFolder { get; set; }
+
         [JsonProperty("BrowserType")]
         public string? BrowserType{ get; set; }
     }

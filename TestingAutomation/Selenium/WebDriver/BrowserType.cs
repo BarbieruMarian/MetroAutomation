@@ -1,4 +1,4 @@
-﻿namespace TestingAutomation.Driver
+﻿namespace TestFramework.Selenium.WebDriver
 {
     public enum BrowserType
     {

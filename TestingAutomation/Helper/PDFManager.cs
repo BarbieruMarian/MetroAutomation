@@ -5,7 +5,7 @@ namespace TestFramework.Helper
 {
     public class PDFManager
     {
-        public void ParsePDFToFile(string pdfFilePath, string textFilePath)
+        public static void ParsePDFToFile(string pdfFilePath, string textFilePath)
         {
             PdfReader reader = new PdfReader(pdfFilePath);
             PdfReaderContentParser parser = new PdfReaderContentParser(reader);
