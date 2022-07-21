@@ -20,25 +20,25 @@ namespace TestProject.Pages
         public void AddCashPayment()
         {
             CashPaymentButton.Click();
-            Thread.Sleep(1000);
+            Thread.Sleep(2500);
             EndInvoiceButton.Click();
         }
 
         public void NextInvoice()
         {
-            Thread.Sleep(1000);
+            Thread.Sleep(2500);
             NextInvoiceButton.Click();
         }
 
         public bool IsAtPayment()
         {
-            Thread.Sleep(2000);
+            Thread.Sleep(2500);
             return CashPaymentButton.Displayed;
         }
 
         public bool WasPaymentSuccessful()
         {
-            Thread.Sleep(2000);
+            Thread.Sleep(2500);
             return NextInvoiceButton.Displayed;
         }
         #endregion

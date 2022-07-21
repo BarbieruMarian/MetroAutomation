@@ -34,16 +34,16 @@ namespace TestProject.Pages
         {
             Driver.WaitForElementToBeClickable(KeyboardButton);   
             KeyboardButton.Click();
-            Thread.Sleep(500);
+            Thread.Sleep(750);
             EmployeeIDInput.SendKeys(user);
-            Thread.Sleep(500);
+            Thread.Sleep(750);
             OkLoginButton.Click();
 
-            Thread.Sleep(1000);
+            Thread.Sleep(1250);
             PasswordBtn1.Click();
-            Thread.Sleep(500);
+            Thread.Sleep(750);
             PasswordBtn2.Click();
-            Thread.Sleep(500);
+            Thread.Sleep(750);
             PasswordBtn3.Click();
             OkLoginButton.Click();
         }

@@ -28,7 +28,7 @@ namespace TestProject.Pages
 
         public void PressTotal()
         {
-            Thread.Sleep(1500);
+            Thread.Sleep(1750);
             TotalButton.Click();
         }
 

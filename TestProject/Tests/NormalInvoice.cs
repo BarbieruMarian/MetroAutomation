@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using AventStack.ExtentReports;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using TestFramework.Configuration;
 using TestFramework.Helper;
@@ -20,8 +21,12 @@ namespace TestProject.Tests
 
         [Fact]
         public void Normal_Invoice_Cash_Payment()
-        {        
-            //step 3 -  Open App, Setting App Local Storage, Login with Superviser and Customer
+        {
+            test = null;
+            test = extent.CreateTest("Test1").Info("Normal Invoice Test");
+
+            //step 1 -  Open App, Setting App Local Storage, Login with Superviser and Customer
+            test.Log(Status.Info, "Step 1 - Open App, Setting App Local Storage, Login with Superviser and Customer");
             var loginPage = new Login(Driver);
             loginPage.GoTo();
             Assert.True(loginPage.IsAtLogin(), "The main page could not be loaded");
@@ -30,8 +35,8 @@ namespace TestProject.Tests
             Assert.True(loginPage.IsAtCustomerLogin(), "The customer login page could not be loaded");
             loginPage.LoginWithCustomer(Config.Customer);
 
-            //step 4 - Add an item to basket
-
+            //step 2 - Add an item to basket
+            test.Log(Status.Info, "Step 2 - Add an item to basket");
             var basketPage = new Basket(Driver);
             Assert.True(basketPage.IsAtBasket(), "The basket page could not be loaded");
             var transactionID = basketPage.GetTransactionID();
@@ -39,7 +44,8 @@ namespace TestProject.Tests
             basketPage.AddItem(ItemToAdd);
             Assert.True(basketPage.ValidateItemWasAdded(ItemToAdd), "The item was not added in basket");
 
-            //step 5 - Make the payment
+            //step 3 - Make the payment
+            test.Log(Status.Info, "Step 3 - Make the payment");
             basketPage.PressTotal();
             var paymentPage = new Payment(Driver);
             Assert.True(paymentPage.IsAtPayment(), "The payment page could not be loaded");
@@ -49,7 +55,8 @@ namespace TestProject.Tests
             paymentPage.NextInvoice();
             Assert.True(loginPage.IsAtCustomerLogin(), "The customer login page could not be loaded");
 
-            //Step 6 - Get the invoiceID by calling GetInvoiceID API
+            //Step 4 - Get the invoiceID by calling GetInvoiceID API
+            test.Log(Status.Info, "Step 4 - Get the invoiceID by calling GetInvoiceID API");
             //var transactionID = "d159f87f-7f93-49e5-9941-ade5ed5a3c29";
             var apiHelper = new RestManager(Config.PTInvoiceEndpoint);
             var client2 = apiHelper.SetURL($"/invoices?TransactionId={transactionID}");
@@ -60,12 +67,14 @@ namespace TestProject.Tests
             var json = (JObject)JsonConvert.DeserializeObject(result.Content);
             var invoiceID = json.SelectToken("items[0].id").Value<string>();
 
-            // Step 7 - Get Invoice PDF on local - downloaded to "Downloads" Folder
+            // Step 5 - Get Invoice PDF on local - downloaded to "Downloads" Folder
+            test.Log(Status.Info, "Step 5 - Get Invoice PDF on local - downloaded to Downloads Folder");
             var invoicePdfAPIPage = new PdfDownload(Driver);
             invoicePdfAPIPage.DownloadPDF(invoiceID);
             Thread.Sleep(5000);
 
-            // Step 8 - Compare expected PDF result with the downloaded PDF   
+            // Step 6 - Compare expected PDF result with the downloaded PDF
+            test.Log(Status.Info, "Step 6 - Compare expected PDF result with the downloaded PDF");
             var downloadedPDFPath = FileManager.GetMostRecentFileFromFolder(Config.PDFDownloadsFolder);
             FileManager.CreateTextFile(Config.PDFParsedToTextFolder, "todayResult.txt");
             PDFManager.ParsePDFToFile(downloadedPDFPath, Config.PDFParsedToTextFolder + "todayResult.txt");
