@@ -1,5 +1,6 @@
 ﻿using AventStack.ExtentReports;
 using AventStack.ExtentReports.Reporter;
+using AventStack.ExtentReports.Reporter.Configuration;
 using OpenQA.Selenium;
 using TestFramework.Configuration;
 using TestFramework.Selenium.Interfaces;
@@ -28,6 +29,7 @@ namespace TestFramework.Test
 
         protected virtual void AfterEach()
         {
+            extent.Flush();
             Driver.Quit();
         }
 
@@ -42,8 +44,7 @@ namespace TestFramework.Test
         }
 
         public void Dispose()
-        {
-            extent.Flush();
+        {        
             AfterEach();
         }
 
@@ -52,6 +53,8 @@ namespace TestFramework.Test
             extent = new ExtentReports();
             var htmlReporter = new ExtentV3HtmlReporter("C:/TestReports/TestReport" + DateTime.Now.ToString("_MMddyyyy_hhmmtt") + ".html");
             htmlReporter.Config.ReportName = DateTime.Now.ToString();
+            htmlReporter.Config.DocumentTitle = "Automation Report";
+            htmlReporter.Config.Theme = Theme.Dark;
 
             extent.AttachReporter(htmlReporter); 
         }
