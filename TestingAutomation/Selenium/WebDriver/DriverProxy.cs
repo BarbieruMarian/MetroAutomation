@@ -14,6 +14,13 @@ namespace TestFramework.Selenium.WebDriver
 
         public abstract void Navigate(string url);
 
+        public abstract void MaximizeWindow();
+        public abstract void MinimizeWindow();
+
+        public abstract void ScrollToTheBottomOfThePage();
+
+        public abstract void MoveToElement(IWebElement element);
+
         public abstract void Quit();
 
         public abstract void Refresh();
@@ -23,5 +30,6 @@ namespace TestFramework.Selenium.WebDriver
         public abstract void WaitForElementToBeClickable(IWebElement element, int waitSeconds = 20);
 
         public abstract void WaitForElementToBeDisplayed(IWebElement element, int waitSeconds = 20);
+
     }
 }

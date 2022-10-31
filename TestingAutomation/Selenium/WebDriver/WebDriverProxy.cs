@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using TestFramework.Helper;
@@ -12,7 +13,7 @@ namespace TestFramework.Selenium.WebDriver
             Driver = driver;
             Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(120);
             Driver.Manage().Timeouts().AsynchronousJavaScript = TimeSpan.FromSeconds(20);
-            Driver.Manage().Window.Maximize();
+            //Driver.Manage().Window.Maximize();
             Wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
             ElementMapping.ElementSelectors.Add(this, new Dictionary<IWebElement, By>());
             
@@ -49,6 +50,23 @@ namespace TestFramework.Selenium.WebDriver
             return result;
         }
 
+        public override void MaximizeWindow()
+        {
+            Driver.Manage().Window.Maximize();
+        }
+
+        public override void MinimizeWindow()
+        {
+            Driver.Manage().Window.Minimize();
+        }
+
+        public override void MoveToElement(IWebElement element)
+        {
+            Actions action = new Actions(Driver);
+            action.MoveToElement(element);
+            action.Perform();
+        }
+
         public override void Navigate(string url)
         {
             Driver.Navigate().GoToUrl(url);
@@ -64,6 +82,13 @@ namespace TestFramework.Selenium.WebDriver
             Driver.Navigate().Refresh();
         }
 
+        public override void ScrollToTheBottomOfThePage()
+        {
+            ((IJavaScriptExecutor)Driver).ExecuteScript("window.scrollTo(0, document.body.scrollHeight)");
+            //body.Sendkeys(Keys.End)
+        }
+
+        //refactor this to work in paralel
         public override void SetLocalStorage()
         {
             IJavaScriptExecutor js = (IJavaScriptExecutor)Driver;
@@ -73,6 +98,7 @@ namespace TestFramework.Selenium.WebDriver
 
         public override void WaitForElementToBeClickable(IWebElement element, int waitSeconds = 20)
         {
+            Thread.Sleep(2000);
             WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(waitSeconds));
             wait.IgnoreExceptionTypes(
                 typeof(NoSuchElementException),

@@ -22,7 +22,7 @@ namespace TestProject.Pages
         {
             Driver.WaitForElementToBeClickable(EnterItemTextbox);
             EnterItemTextbox.SendKeys(itemName);
-            Thread.Sleep(500);
+            Thread.Sleep(1000);
             OkNumpadButton.Click();
         }
 

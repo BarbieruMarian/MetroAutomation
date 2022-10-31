@@ -13,7 +13,7 @@ namespace TestFramework.Selenium.WebDriver
         {
             var options = new ChromeOptions();
             options.AddArgument("no-sandbox");
-
+            options.AddArguments("headless");
             return new ChromeDriver(options);
         }
 

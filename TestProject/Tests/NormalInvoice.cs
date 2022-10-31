@@ -14,11 +14,10 @@ namespace TestProject.Tests
     public class NormalInvoice : InvoicesBaseTest
     {
         private const string ItemToAdd = "73471";
-
         public NormalInvoice(IDriverType browserDriverType) : base(browserDriverType)
         {
         }
-
+ 
         [Fact]
         public void Normal_Invoice_Cash_Payment()
         {
@@ -27,41 +26,19 @@ namespace TestProject.Tests
                 test = extent.CreateTest("Normal_Invoice_Cash_Payment").Info("Normal Invoice Test");
 
                 test.Log(Status.Info, "Step 1 - Open App, Setting App Local Storage, Login with Superviser and Customer");
-                var loginPage = new Login(Driver);
-                loginPage.GoTo();
-                Assert.True(loginPage.IsAtLogin(), "The main page could not be loaded");
-                loginPage.LoginWithSuperviser(Config.Superviser);
-
-                Assert.True(loginPage.IsAtCustomerLogin(), "The customer login page could not be loaded");
-                loginPage.LoginWithCustomer(Config.Customer);
+                Login(Config.Superviser, Config.Customer);
 
                 test.Log(Status.Info, "Step 2 - Add an item to basket");
-                var basketPage = new Basket(Driver);
-                Assert.True(basketPage.IsAtBasket(), "The basket page could not be loaded");
-                var transactionID = basketPage.GetTransactionID();
-
-                basketPage.AddItem(ItemToAdd);
-                Assert.True(basketPage.ValidateItemWasAdded(ItemToAdd), "The item was not added in basket");
+                var transactionID = AddItemToBasketAndGetTransactionId(ItemToAdd);
 
                 test.Log(Status.Info, "Step 3 - Make the payment");
-                basketPage.PressTotal();
-                var paymentPage = new Payment(Driver);
-                Assert.True(paymentPage.IsAtPayment(), "The payment page could not be loaded");
-                paymentPage.AddCashPayment();
-                Assert.True(paymentPage.WasPaymentSuccessful(), "The invoice popup was not loaded");
-                paymentPage.NextInvoice();
-                Assert.True(loginPage.IsAtCustomerLogin(), "The customer login page could not be loaded");
+                PayWithCash();
 
                 test.Log(Status.Info, "Step 4 - Get the invoiceID by calling GetInvoiceID API");
-                var apiHelper = new RestManager(Config.PTInvoiceEndpoint);
-                var client2 = apiHelper.SetURL($"/invoices?TransactionId={transactionID}");
-                var request2 = apiHelper.CreateGetRequest();
-                var result = apiHelper.GetResponse(client2, request2);
-                Assert.True(result.Content != string.Empty, $"The Invoice API GET Response for the transaction id: {transactionID} was empty.");
-                var json = (JObject)JsonConvert.DeserializeObject(result.Content);
-                var invoiceID = json.SelectToken("items[0].id").Value<string>();
+                var invoiceID = GetInvoiceID(transactionID);
 
                 test.Log(Status.Info, "Step 5 - Get Invoice PDF on local - downloaded to Downloads Folder");
+                //do it with a rest call to have it in a string
                 var invoicePdfAPIPage = new PdfDownload(Driver);
                 invoicePdfAPIPage.DownloadPDF(invoiceID);
                 Thread.Sleep(5000);

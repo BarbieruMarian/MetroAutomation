@@ -14,6 +14,7 @@ namespace TestProject.Pages
 
         #region Elements
         private IWebElement KeyboardButton => Driver.FindElement(By.XPath("//button[@id='button-use-keypad']"), 30);
+        private IWebElement Body => Driver.FindElement(By.XPath(".//body"), 30);
         private IWebElement EmployeeIDInput => Driver.FindElement(By.XPath("//input[@class='css-1etmqih']"), 30);
         private IWebElement CustomerIDInput => Driver.FindElement(By.XPath("//input[@id='customerBarcode']"), 30);
         private IWebElement OkLoginButton => Driver.FindElement(By.XPath("//button[@id='on-screen-keypad-key-ok']"), 30);
@@ -32,7 +33,10 @@ namespace TestProject.Pages
         }
         public void LoginWithSuperviser(string user)
         {
-            Driver.WaitForElementToBeClickable(KeyboardButton);   
+            Driver.WaitForElementToBeClickable(KeyboardButton);
+            Driver.MoveToElement(KeyboardButton);
+            Driver.MaximizeWindow();
+
             KeyboardButton.Click();
             Thread.Sleep(750);
             EmployeeIDInput.SendKeys(user);

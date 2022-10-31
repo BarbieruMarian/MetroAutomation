@@ -2,8 +2,9 @@
 {
     public class NormalInvoiceDataPOT
     {
+        //
         public static string Header1 = "ORIGINAL\n" +
-                                       "MAKRO CASH & CARRY PORTUGAL, S.A. MAKRO ALFRAGIDE Pág:    1/1";
+                                       "MAKRO CASH & CARRY PORTUGAL, S.A. MAKRO ALFRAGIDE  Pág:      1/1";
 
         public static string Header2 = "GROSSISTA\n" +
                                          "Capital social: 1.497.000,00 EUR\n" +
@@ -20,6 +21,12 @@
                                                    "N.I.F. do Cliente : PT510449344\n" +
                                                    "7070";
 
+        // var x = dynamicData
+
+        //08.01.2022
+        //take dateTime.Now - + 1 min
+
+ 
         public static string ProductInfo = "M Código Artigo Descrição artigo PACK PR Unit/KG Unit/KG Preço U.V. Quant. Valor total IVA DD DP MOT\n" +
                                            "M 073471 CFR. GTEKK VMMQSU AYX350MK YL PC 1,790 1 1,79 1 1,79 2    \n" +
                                            "Nº de artigos: 1 Peso Total: 0,000  KG Depósito: 0 Total s/ IVA: 1,79 \n" +
