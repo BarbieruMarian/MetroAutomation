@@ -11,6 +11,7 @@ namespace TestFramework.Selenium.WebDriver
         public abstract string Url { get; }
 
         public abstract IWebElement FindElement(By by, double waitSeconds = 20);
+        public abstract IList<IWebElement> GetAllElements(By by, bool ignoreException = true, int waitInSeconds = 15);
 
         public abstract void Navigate(string url);
 

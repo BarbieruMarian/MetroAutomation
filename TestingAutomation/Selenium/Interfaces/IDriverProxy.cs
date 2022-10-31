@@ -16,5 +16,6 @@ namespace TestFramework.Selenium.Interfaces
         void WaitForElementToBeClickable(IWebElement element, int waitSeconds = 20);
         void SetLocalStorage();
         IWebElement FindElement(By by, double waitSeconds = 20);
+        IList<IWebElement> GetAllElements(By by, bool ignoreException = true, int waitInSeconds = 15);
     }
 }
