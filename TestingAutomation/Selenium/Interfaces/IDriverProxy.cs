@@ -6,8 +6,11 @@ namespace TestFramework.Selenium.Interfaces
     {
         public string Url { get; }
         void Navigate(string url);
+        void OpenNewTab();
         void MaximizeWindow();
         void MinimizeWindow();
+        void SwitchToNextTab();
+        void SwitchToFirstTab();
         void ScrollToTheBottomOfThePage();
         void MoveToElement(IWebElement element);
         void Refresh();
@@ -17,5 +20,6 @@ namespace TestFramework.Selenium.Interfaces
         void SetLocalStorage();
         IWebElement FindElement(By by, double waitSeconds = 20);
         IList<IWebElement> GetAllElements(By by, bool ignoreException = true, int waitInSeconds = 15);
+        void SaveScreenshot(string screenshotPath);
     }
 }

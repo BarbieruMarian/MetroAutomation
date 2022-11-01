@@ -14,7 +14,9 @@ namespace TestFramework.Selenium.WebDriver
         public abstract IList<IWebElement> GetAllElements(By by, bool ignoreException = true, int waitInSeconds = 15);
 
         public abstract void Navigate(string url);
-
+        public abstract void OpenNewTab();
+        public abstract void SwitchToNextTab();
+        public abstract void SwitchToFirstTab();
         public abstract void MaximizeWindow();
         public abstract void MinimizeWindow();
 
@@ -31,6 +33,6 @@ namespace TestFramework.Selenium.WebDriver
         public abstract void WaitForElementToBeClickable(IWebElement element, int waitSeconds = 20);
 
         public abstract void WaitForElementToBeDisplayed(IWebElement element, int waitSeconds = 20);
-
+        public abstract void SaveScreenshot(string screenshotPath);
     }
 }

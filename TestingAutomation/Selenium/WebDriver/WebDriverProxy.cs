@@ -18,7 +18,7 @@ namespace TestFramework.Selenium.WebDriver
             Driver.Manage().Window.Maximize();
             Wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
             ElementMapping.ElementSelectors.Add(this, new Dictionary<IWebElement, By>());        
-        }       
+        }
 
         public override IWebElement FindElement(By by, double waitSeconds = 20)
         {
@@ -141,6 +141,29 @@ namespace TestFramework.Selenium.WebDriver
             Driver.Navigate().Refresh();
         }
 
+        public override void OpenNewTab()
+        {
+            Driver.SwitchTo().NewWindow(WindowType.Tab);
+        }
+
+        public override void SwitchToFirstTab()
+        {
+            List<string> tabs = new List<string>(Driver.WindowHandles);
+            Driver.SwitchTo().Window(tabs[0]);
+        }
+
+        public override void SwitchToNextTab()
+        {
+            List<string> tabs = new List<string>(Driver.WindowHandles);
+            int currentTabIndex = tabs.FindIndex(x => x == Driver.CurrentWindowHandle);
+            if (tabs.Count - 1 == currentTabIndex)
+            {
+                Driver.SwitchTo().Window(tabs[0]);
+            }
+            else
+                Driver.SwitchTo().Window(tabs[++currentTabIndex]);
+        }
+
         public override void MaximizeWindow()
         {
             Driver.Manage().Window.Maximize();
@@ -158,6 +181,13 @@ namespace TestFramework.Selenium.WebDriver
         public override void Quit()
         {
             Driver.Quit();
+        }
+
+        public override void SaveScreenshot(string screenshotPath)
+        {
+            Screenshot ss = ((ITakesScreenshot)Driver).GetScreenshot();
+            ss.SaveAsFile(screenshotPath,
+            ScreenshotImageFormat.Png);
         }
     }
 }

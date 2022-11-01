@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using System.Reflection;
 using TestFramework.Configuration;
 using TestFramework.Helper;
 using TestFramework.Selenium.Interfaces;
@@ -28,8 +29,9 @@ namespace TestProject.Pages
         #region Actions
         public void GoTo()
         {
-            Driver.Navigate(Config.MPOSAirPT);
-            LocalStorage.Setup(Driver);
+            Driver.Navigate("https://www.docker.com/");
+            Driver.SaveScreenshot(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+            //LocalStorage.Setup(Driver);
         }
         public void LoginWithSuperviser(string user)
         {
