@@ -3,6 +3,7 @@ using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using TestFramework.Helper;
+using TestFramework.Selenium.Helpers;
 
 namespace TestFramework.Selenium.WebDriver
 {
@@ -14,14 +15,37 @@ namespace TestFramework.Selenium.WebDriver
         {
             Driver = driver;
             Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(120);
-            Driver.Manage().Timeouts().AsynchronousJavaScript = TimeSpan.FromSeconds(20);
+            Driver.Manage().Timeouts().AsynchronousJavaScript = TimeSpan.FromSeconds(60);
+            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60);
             Driver.Manage().Window.Maximize();
             Wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+            JSProxy = new JSProxy(Driver, Wait);
             ElementMapping.ElementSelectors.Add(this, new Dictionary<IWebElement, By>());        
+        }
+
+        public override void JSClick(IWebElement element)
+        {
+            JSProxy.ExecuteScript("arguments[0].click();", element);
+        }
+
+        public override void JSClick(IWebElement element, double waitInSeconds = 20)
+        {
+            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(waitInSeconds);
+            try
+            {
+                Wait.Until(driver => element.Enabled);
+                JSClick(element);
+            }
+            catch
+            {
+                //TODO: after logging is implemented, write the exception to the logs
+            }
         }
 
         public override IWebElement FindElement(By by, double waitSeconds = 20)
         {
+
+
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(waitSeconds));
             IWebElement result = null;
             try
@@ -124,16 +148,32 @@ namespace TestFramework.Selenium.WebDriver
 
         public override void ScrollToTheBottomOfThePage()
         {
-            ((IJavaScriptExecutor)Driver).ExecuteScript("window.scrollTo(0, document.body.scrollHeight)");
-            //body.Sendkeys(Keys.End)
+            JSProxy.ExecuteScript("window.scrollTo(0, document.body.scrollHeight)");
+        }
+
+        public override void ScrollToTheBottomInsideTheViewPage(IWebElement element)
+        {
+            JSProxy.ExecuteScript("arguments[0].scrollIntoView(true);", element);
         }
 
         //refactor this to work in paralel
         public override void SetLocalStorage()
         {
-            IJavaScriptExecutor js = (IJavaScriptExecutor)Driver;
-            js.ExecuteScript("localStorage.setItem('workstationId','TESTWSTID001850');");
+            JSProxy.ExecuteScript("localStorage.setItem('workstationId','TESTWSTID001850');");
             Driver.Navigate().Refresh();
+        }
+
+        public override void ResetCookies()
+        {
+            Driver.Manage().Cookies.DeleteAllCookies();
+            ClearCache();
+        }
+
+        public override void ClearCache()
+        {
+            JSProxy.ExecuteScript("window.localStorage.clear()");
+            JSProxy.ExecuteScript("window.sessionStorage.clear()"); 
+            JSProxy.ExecuteScript("window.cookieStore.delete()"); 
         }
 
         public override void Refresh()

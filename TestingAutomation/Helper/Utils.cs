@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-
-namespace TestFramework.Helper
+﻿namespace TestFramework.Helper
 {
     public static class Utils
     {
@@ -16,5 +13,7 @@ namespace TestFramework.Helper
 
         public static string RandomDigits(int length) =>
             RandomString(length, "0123456789");
+
+
     }
 }
