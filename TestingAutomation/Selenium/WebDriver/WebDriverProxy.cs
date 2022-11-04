@@ -145,6 +145,12 @@ namespace TestFramework.Selenium.WebDriver
             action.MoveToElement(element);
             action.Perform();
         }
+        public override void DoubleClick(IWebElement element)
+        {
+            Actions action = new Actions(Driver);
+            action.DoubleClick(element); 
+            action.Perform();
+        }
 
         public override void ScrollToTheBottomOfThePage()
         {
@@ -181,18 +187,22 @@ namespace TestFramework.Selenium.WebDriver
             Driver.Navigate().Refresh();
         }
 
-        public override void OpenNewTab()
+        public override void TabOpen()
         {
             Driver.SwitchTo().NewWindow(WindowType.Tab);
         }
+        public override void TabClose()
+        {
+            Driver.Close();
+        }
 
-        public override void SwitchToFirstTab()
+        public override void TabSwitchToFirst()
         {
             List<string> tabs = new List<string>(Driver.WindowHandles);
             Driver.SwitchTo().Window(tabs[0]);
         }
 
-        public override void SwitchToNextTab()
+        public override void TabSwitchToNext()
         {
             List<string> tabs = new List<string>(Driver.WindowHandles);
             int currentTabIndex = tabs.FindIndex(x => x == Driver.CurrentWindowHandle);
@@ -216,6 +226,10 @@ namespace TestFramework.Selenium.WebDriver
         public override void Navigate(string url)
         {
             Driver.Navigate().GoToUrl(url);
+        }        
+        public override void NavigateBack()
+        {
+            Driver.Navigate().Back();
         }
 
         public override void Quit()

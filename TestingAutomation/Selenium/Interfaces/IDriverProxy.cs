@@ -8,13 +8,18 @@ namespace TestFramework.Selenium.Interfaces
         void JSClick(IWebElement element);
         void JSClick(IWebElement element, double waitInSeconds = 20);
         void Navigate(string url);
-        void OpenNewTab();
+        void NavigateBack();
+        #region Tab
+        void TabOpen();
+        void TabClose(); 
+        void TabSwitchToNext();
+        void TabSwitchToFirst();
+        #endregion
         void MaximizeWindow();
         void MinimizeWindow();
-        void SwitchToNextTab();
-        void SwitchToFirstTab();
         void ScrollToTheBottomOfThePage();
         void ScrollToTheBottomInsideTheViewPage(IWebElement element);
+        void DoubleClick(IWebElement element);
         void MoveToElement(IWebElement element);
         void Refresh();
         void Quit();
