@@ -22,9 +22,9 @@
             if (length != 8 && length != 13)
                 throw new InvalidDataException("Ean can be only 8 or 13 digits long!");
             var ean = RandomDigits(--length).ToString();
-            ean += CalculateEanCheckDigit(ean);
+            ean += CalculateEANCheckDigit(ean);
             return ean;
-        }        
+        }             
 
         public static string CountryCodeNumeric(string countryCode)
         {
@@ -33,11 +33,11 @@
                 case "ES": return "724";
                 case "PT": return "620";
                 case "TR": return "792";
-                default: throw new Exception($"The is no numeric country code defined for {countryCode}!");
+                default: throw new Exception($"There is no numeric country code defined for {countryCode}!");
             }
         }
 
-        private static int CalculateEanCheckDigit(string barcode)
+        private static int CalculateEANCheckDigit(string barcode)
         {
             var reversed = barcode.Reverse().ToArray();
             var sum = Enumerable
