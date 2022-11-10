@@ -55,12 +55,13 @@ namespace TestFramework.Test
 
         private void ExtentStart()
         {
-            //extent = new ExtentReports();
+            //extent = new ExtentReports(); 
+            //var htmlReporter = new ExtentV3HtmlReporter("C:/TestReports/TestReport" + DateTime.Now.ToString("_MMddyyyy_hhmmtt") + ".html");
             //htmlReporter.Config.ReportName = DateTime.Now.ToString();
             //htmlReporter.Config.DocumentTitle = "Automation Report";
             //htmlReporter.Config.Theme = Theme.Dark;
 
-            //extent.AttachReporter(htmlReporter); 
+            //extent.AttachReporter(htmlReporter);
         }
     }
 }
