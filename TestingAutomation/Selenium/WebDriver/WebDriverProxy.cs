@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
+using TestFramework.Configuration;
 using TestFramework.Helper;
 using TestFramework.Selenium.Helpers;
 
@@ -14,11 +15,11 @@ namespace TestFramework.Selenium.WebDriver
         public WebDriverProxy(IWebDriver driver)
         {
             Driver = driver;
-            Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(120);
-            Driver.Manage().Timeouts().AsynchronousJavaScript = TimeSpan.FromSeconds(60);
-            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60);
+            Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(Config.PageLoadImplicitWait);
+            Driver.Manage().Timeouts().AsynchronousJavaScript = TimeSpan.FromSeconds(Config.ImplicitWait);
+            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(Config.ImplicitWait);
             Driver.Manage().Window.Maximize();
-            Wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+            Wait = new WebDriverWait(driver, TimeSpan.FromSeconds(Config.ImplicitWait));
             JSProxy = new JSProxy(Driver, Wait);
             ElementMapping.ElementSelectors.Add(this, new Dictionary<IWebElement, By>());        
         }
@@ -36,9 +37,9 @@ namespace TestFramework.Selenium.WebDriver
                 Wait.Until(driver => element.Enabled);
                 JSClick(element);
             }
-            catch
+            catch (Exception ex)
             {
-                //TODO: after logging is implemented, write the exception to the logs
+                throw new Exception(string.Format($"Element {element.TagName} is not loaded. See Inner Exception:", ex.InnerException));
             }
         }
 

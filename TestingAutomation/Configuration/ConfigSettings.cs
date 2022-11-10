@@ -25,6 +25,12 @@ namespace TestFramework.Configuration
         [JsonProperty("pDFParsedToTextFolder")]
         public string? PDFParsedToTextFolder { get; set; }
 
+        [JsonProperty("PageLoadImplicitWait")]
+        public double PageLoadImplicitWait { get; set; }
+
+        [JsonProperty("ImplicitWait")]
+        public double ImplicitWait { get; set; }
+
         [JsonProperty("BrowserType")]
         public string? BrowserType{ get; set; }
     }
