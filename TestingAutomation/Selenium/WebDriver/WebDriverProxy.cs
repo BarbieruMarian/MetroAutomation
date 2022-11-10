@@ -63,7 +63,8 @@ namespace TestFramework.Selenium.WebDriver
             }
             catch (Exception ex)
             {
-                throw new Exception(string.Format($"Element not found for {by}. See Inner Exception:", ex.InnerException));
+                throw new Exception(string.Format($"Element not found for {by}. See Inner Exception:", ex.InnerException))
+                //TODO: after logging is implemented in MAIR-914, write the exception to the logs
             }
 
             result = Driver.FindElement(by);

@@ -47,6 +47,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="appconfig.DEV-ES-HQ.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="appconfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

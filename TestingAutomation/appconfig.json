@@ -1,10 +1,15 @@
 ﻿{
-  "DefaultEnvironmentForTests": "LOCAL",
-  //"DefaultEnvironmentForTests": "DEV-ES",
+  //"DefaultEnvironmentForTests": "LOCAL",
   //"DefaultEnvironmentForTests": "DEV-ES-HQ",
-  //"DefaultEnvironmentForTests": "QA-PT",
-  //"DefaultEnvironmentForTests": "QA-ES",
-  //"DefaultEnvironmentForTests": "UAT",
+  "DefaultEnvironmentForTests": "DEV-ES-STORE",
+  //"DefaultEnvironmentForTests": "QA-PT-HQ",
+  //"DefaultEnvironmentForTests": "QA-PT-STORE",
+  //"DefaultEnvironmentForTests": "QA-ES-HQ",
+  //"DefaultEnvironmentForTests": "QA-ES-STORE",
+  //"DefaultEnvironmentForTests": "UAT-ES-HQ",
+  //"DefaultEnvironmentForTests": "UAT-ES-STORE",  
+  //"DefaultEnvironmentForTests": "UAT-PT-HQ",
+  //"DefaultEnvironmentForTests": "UAT-PT-STORE",
   //"DefaultEnvironmentForTests": "SANDBOX",
   "TestOptions": {
     "pDFParsedToTextFolder": "C:/PDF/",
@@ -16,7 +21,7 @@
     "superviser": "001333813011",
     "customer": "6200000100035815011056",
     "PageLoadImplicitWait": 120,
-    "ImplicitWait": 60,
+    "ImplicitWait": 60
   },
   "ConsulOptions": {
     "ServiceName": "mposair-basket-gateway",

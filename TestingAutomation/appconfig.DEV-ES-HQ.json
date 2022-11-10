@@ -1,0 +1,25 @@
+﻿{
+  "TestOptions": {
+    "pDFParsedToTextFolder": "C:/PDF/",
+    "pDFDownloadsFolder": "C:/Users/m.barbieru/Downloads/",
+    "BrowserType": "Chrome",
+    "mPosAirPT": "",
+    "pTInvoiceEndpoint": "",
+    "ptInvoiceDownloadPDF": "",
+    "superviser": "",
+    "customer": "",
+    "PageLoadImplicitWait": 120,
+    "ImplicitWait": 60,
+  },
+  "ConsulOptions": {
+    "ServiceName": "mposair-basket-gateway",
+    "Country": "es",
+    "EnvironmentName": "dev",
+    "DeploymentType": "store",
+    "DeploymentId": 13,
+    "IsHqEnvironment": true,
+    "InUse": true,
+    "Instance": "http://consul-develop.apps-api-mcdr-001-test14-mcc-be-gcw1.metroscales.io/",
+    "Token": "MjE1OThjZDktYjRhNi05MWI4LTNiMDUtNzVlMGNmODc3ZGY0"
+  }
+}
