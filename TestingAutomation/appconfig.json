@@ -1,12 +1,37 @@
 ﻿{
-  "Portugal": {
-    "mPosAirPT": "https://ui.lis11masu001000.mpos.madm.net/login",
-    "superviser": "001333813011",
-    "customer": "6200000100035815011056",
-    "pTInvoiceEndpoint": "https://invoice.lis11masu001000.mpos.madm.net",
-    "ptInvoiceDownloadPDF": "https://invoice.lis11masu001000.mpos.madm.net/invoices/",
+  //"DefaultEnvironmentForTests": "LOCAL",
+  //"DefaultEnvironmentForTests": "DEV-ES-HQ",
+  "DefaultEnvironmentForTests": "DEV-ES-STORE",
+  //"DefaultEnvironmentForTests": "QA-PT-HQ",
+  //"DefaultEnvironmentForTests": "QA-PT-STORE",
+  //"DefaultEnvironmentForTests": "QA-ES-HQ",
+  //"DefaultEnvironmentForTests": "QA-ES-STORE",
+  //"DefaultEnvironmentForTests": "UAT-ES-HQ",
+  //"DefaultEnvironmentForTests": "UAT-ES-STORE",  
+  //"DefaultEnvironmentForTests": "UAT-PT-HQ",
+  //"DefaultEnvironmentForTests": "UAT-PT-STORE",
+  //"DefaultEnvironmentForTests": "SANDBOX",
+  "TestOptions": {
     "pDFParsedToTextFolder": "C:/PDF/",
     "pDFDownloadsFolder": "C:/Users/m.barbieru/Downloads/",
-    "BrowserType": "Chrome"
+    "BrowserType": "Chrome",
+    "mPosAirPT": "https://ui.lis11masu001000.mpos.madm.net/login",
+    "pTInvoiceEndpoint": "https://invoice.lis11masu001000.mpos.madm.net",
+    "ptInvoiceDownloadPDF": "https://invoice.lis11masu001000.mpos.madm.net/invoices/",
+    "superviser": "001333813011",
+    "customer": "6200000100035815011056",
+    "PageLoadImplicitWait": 120,
+    "ImplicitWait": 60
+  },
+  "ConsulOptions": {
+    "ServiceName": "mposair-basket-gateway",
+    "Country": "es",
+    "EnvironmentName": "dev",
+    "DeploymentType": "store",
+    "DeploymentId": 13,
+    "IsHqEnvironment": false,
+    "InUse": true,
+    "Instance": "http://consul-develop.apps-api-mcdr-001-test14-mcc-be-gcw1.metroscales.io/",
+    "Token": "MjE1OThjZDktYjRhNi05MWI4LTNiMDUtNzVlMGNmODc3ZGY0"
   }
 }

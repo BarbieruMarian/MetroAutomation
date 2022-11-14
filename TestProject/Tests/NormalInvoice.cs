@@ -17,8 +17,8 @@ namespace TestProject.Tests
         public NormalInvoice(IDriverType browserDriverType) : base(browserDriverType)
         {
         }
- 
-        [Fact]
+
+        [UnitTestUtilities.Attributes.CountryFact("ES")]
         public void Normal_Invoice_Cash_Payment()
         {
             try

@@ -26,12 +26,14 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="ReportPortal.XUnit" Version="2.3.1" />
     <PackageReference Include="RestSharp" Version="108.0.1" />
     <PackageReference Include="Selenium.Support" Version="4.2.0" />
     <PackageReference Include="Selenium.WebDriver" Version="4.2.0" />
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="105.0.5195.5200" />
     <PackageReference Include="SolidToken.SpecFlow.DependencyInjection" Version="3.9.3" />
     <PackageReference Include="WebDriverManager" Version="2.12.4" />
+    <PackageReference Include="Winton.Extensions.Configuration.Consul" Version="3.2.0" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="Xunit.DependencyInjection" Version="8.5.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
@@ -45,6 +47,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="appconfig.DEV-ES-HQ.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="appconfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

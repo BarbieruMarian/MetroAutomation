@@ -1,0 +1,17 @@
+{
+  "$schema": "https://raw.githubusercontent.com/reportportal/agent-net-xunit/master/src/ReportPortal.XUnitReporter/ReportPortal.config.schema",
+  "enabled": true,
+  "server": {
+    "url": "http://34.79.167.180",
+    "project": "mposair",
+    "authentication": {
+      "uuid": "6f80b1fb-eb10-4a7e-bdcd-8eab2701ef46"
+    }
+  },
+  "launch": {
+    "name": "MPOSAir 2.0 E2E Frontend",
+    "description": "MPOSAir 2.0 E2E Frontend",
+    "debugMode": false,
+    "tags": [ "MposAir", "E2E" ]
+  }
+}
