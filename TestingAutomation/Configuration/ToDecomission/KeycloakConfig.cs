@@ -1,4 +1,4 @@
-﻿namespace TestFramework.Configuration
+﻿namespace TestFramework.Configuration.ToDecomission
 {
     public class KeycloakConfig
     {

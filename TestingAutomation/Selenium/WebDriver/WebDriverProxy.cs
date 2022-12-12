@@ -31,7 +31,9 @@ namespace TestFramework.Selenium.WebDriver
 
         public override void JSClick(IWebElement element, double waitInSeconds = 20)
         {
+            var oldTimeout = Driver.Manage().Timeouts().ImplicitWait;
             Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(waitInSeconds);
+
             try
             {
                 Wait.Until(driver => element.Enabled);
@@ -41,6 +43,8 @@ namespace TestFramework.Selenium.WebDriver
             {
                 throw new Exception(string.Format($"Element {element.TagName} is not loaded. See Inner Exception:", ex.InnerException));
             }
+
+            Driver.Manage().Timeouts().ImplicitWait = oldTimeout;
         }
 
         public override IWebElement FindElement(By by, double waitSeconds = 20)
@@ -63,7 +67,7 @@ namespace TestFramework.Selenium.WebDriver
             }
             catch (Exception ex)
             {
-                throw new Exception(string.Format($"Element not found for {by}. See Inner Exception:", ex.InnerException))
+                throw new Exception(string.Format($"Element not found for {by}. See Inner Exception:", ex.InnerException));
                 //TODO: after logging is implemented in MAIR-914, write the exception to the logs
             }
 
