@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 
-namespace TestFramework.Configuration
+namespace TestFramework.Configuration.ToDecomission
 {
     public class ContextConfig
     {

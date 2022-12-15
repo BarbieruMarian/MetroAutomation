@@ -1,27 +1,23 @@
 ﻿{
   //"DefaultEnvironmentForTests": "LOCAL",
   //"DefaultEnvironmentForTests": "DEV-ES-HQ",
-  "DefaultEnvironmentForTests": "DEV-ES-STORE",
-  //"DefaultEnvironmentForTests": "QA-PT-HQ",
-  //"DefaultEnvironmentForTests": "QA-PT-STORE",
-  //"DefaultEnvironmentForTests": "QA-ES-HQ",
-  //"DefaultEnvironmentForTests": "QA-ES-STORE",
+  "DefaultEnvironmentForTests": "LOCALL",
+  //"DefaultEnvironmentForTests": "DEV-ES-STORE",
   //"DefaultEnvironmentForTests": "UAT-ES-HQ",
   //"DefaultEnvironmentForTests": "UAT-ES-STORE",  
   //"DefaultEnvironmentForTests": "UAT-PT-HQ",
   //"DefaultEnvironmentForTests": "UAT-PT-STORE",
-  //"DefaultEnvironmentForTests": "SANDBOX",
+
   "TestOptions": {
-    "pDFParsedToTextFolder": "C:/PDF/",
-    "pDFDownloadsFolder": "C:/Users/m.barbieru/Downloads/",
-    "BrowserType": "Chrome",
-    "mPosAirPT": "https://ui.lis11masu001000.mpos.madm.net/login",
-    "pTInvoiceEndpoint": "https://invoice.lis11masu001000.mpos.madm.net",
-    "ptInvoiceDownloadPDF": "https://invoice.lis11masu001000.mpos.madm.net/invoices/",
-    "superviser": "001333813011",
-    "customer": "6200000100035815011056",
     "PageLoadImplicitWait": 120,
-    "ImplicitWait": 60
+    "ImplicitWait": 60,
+    "BrowserType": "Chrome"
+  },
+  "EnvironmentOptions": {
+    "StoreNumber": 13,
+    "PDFParsedToTextFolder": "C:/PDF/",
+    "PDFDownloadsFolder": "C:/Users/m.barbieru/Downloads/",
+    "MPOSAirUI": "https://ui.lis11masu001000.mpos.madm.net/login"
   },
   "ConsulOptions": {
     "ServiceName": "mposair-basket-gateway",
@@ -33,5 +29,32 @@
     "InUse": true,
     "Instance": "http://consul-develop.apps-api-mcdr-001-test14-mcc-be-gcw1.metroscales.io/",
     "Token": "MjE1OThjZDktYjRhNi05MWI4LTNiMDUtNzVlMGNmODc3ZGY0"
+  },
+  "TestData": {
+    "Superviser": "001333813011",
+    "SuperviserPIN": "123",
+    "Cashier": "001333813011",
+    "CashierPIN": "123",
+    "Customer": "6200000100035815011056",
+    "FiscalId": "299999998",
+    "TradeId": "9"
+    //"activeCustomerBarcode": "7240001300066480023065",
+    //"regular": {
+    //  "name": "GEL HIDROALC",
+    //  "number": "188103",
+    //  "barcode": "8414892323314"
+    //},
+    //"Promotion": "02901000501017",
+    //"discount": "04333465094601",
+    //"priceVariable": "02300180000004",
+    //"priceVariableInBarcode": "..0102300180000004..8005000123",
+    //"weighted": "02100217000003",
+    //"weightedInBarcode": "..0102100217000003..3101000123",
+    //"traceability": "00010942210085",
+    //"traceabilityInBarcode": "..0108437002136789..1011111111",
+    //"deposit": "2989207301012",
+    //"hamper": "131515",
+    //"cannotBeSold": "08800000032382",
+    //"invalid": "01133220000006"
   }
 }
