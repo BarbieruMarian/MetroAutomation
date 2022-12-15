@@ -26,7 +26,7 @@ namespace TestFramework.Test
         }
         protected virtual void BeforeEach()
         {
-            ConfigReader.InitializeSettings("TestOptions");
+            ConfigReader.InitializeSettings();
             ExtentStart();
             Driver = new WebDriverProxy(GetWebDriver());
 

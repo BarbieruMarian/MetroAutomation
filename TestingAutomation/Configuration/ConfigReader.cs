@@ -29,6 +29,8 @@ namespace TestFramework.Configuration
             Config.PDFParsedToTextFolder = configurationRoot.GetSection("EnvironmentOptions:PDFParsedToTextFolder").Value;
             Config.PDFDownloadsFolder = configurationRoot.GetSection("EnvironmentOptions:PDFDownloadsFolder").Value;
             Config.MPOSAirUI = configurationRoot.GetSection("EnvironmentOptions:MPOSAirUI").Value;
+            Config.PTInvoiceEndpoint = configurationRoot.GetSection("EnvironmentOptions:PTInvoiceEndpoint").Value;
+            Config.PtInvoiceDownloadPDF = configurationRoot.GetSection("EnvironmentOptions:PtInvoiceDownloadPDF").Value;
 
             // setting ConsulOptions
             Config.ConsulOptions = BuildConsul(configurationRoot, builder);

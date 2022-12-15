@@ -16,6 +16,8 @@ namespace TestFramework.Configuration
         public static string? PDFParsedToTextFolder { get; set; }
         public static string? PDFDownloadsFolder { get; set; }
         public static string? MPOSAirUI { get; set; }
+        public static string? PTInvoiceEndpoint { get; set; }
+        public static string? PtInvoiceDownloadPDF { get; set; }
         #endregion
 
         public static IConfiguration ConsulOptions { get; set; }

@@ -17,7 +17,9 @@
     "StoreNumber": 13,
     "PDFParsedToTextFolder": "C:/PDF/",
     "PDFDownloadsFolder": "C:/Users/m.barbieru/Downloads/",
-    "MPOSAirUI": "https://ui.lis11masu001000.mpos.madm.net/login"
+    "MPOSAirUI": "https://ui.lis11masu001000.mpos.madm.net/login",
+    "PTInvoiceEndpoint": "https://invoice.lis11masu001000.mpos.madm.net",
+    "PtInvoiceDownloadPDF": "https://invoice.lis11masu001000.mpos.madm.net/invoices/"
   },
   "ConsulOptions": {
     "ServiceName": "mposair-basket-gateway",
