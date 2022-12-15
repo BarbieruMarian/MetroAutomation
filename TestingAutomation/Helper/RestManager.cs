@@ -34,6 +34,29 @@ namespace TestFramework.Helper
             return restRequest;
         }
 
+        public RestRequest CreatePutRequest(string jsonString)
+        {
+            restRequest = new RestRequest("", Method.Put);
+            restRequest.AddHeader("Accept", "application/json");
+            restRequest.AddParameter("application/json", jsonString, ParameterType.RequestBody);
+            return restRequest;
+        }
+
+        public RestRequest CreatePatchRequest(string jsonString)
+        {
+            restRequest = new RestRequest("", Method.Patch);
+            restRequest.AddHeader("Accept", "application/json");
+            restRequest.AddParameter("application/json", jsonString, ParameterType.RequestBody);
+            return restRequest;
+        }
+
+        public RestRequest CreateDeleteRequest()
+        {
+            restRequest = new RestRequest("", Method.Delete);
+            restRequest.AddHeader("Accept", "application/json");
+            return restRequest;
+        }
+
         public RestResponse GetResponse(RestClient client, RestRequest restRequest)
         {
             return client.Execute(restRequest);
