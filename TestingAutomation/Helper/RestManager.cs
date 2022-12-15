@@ -61,5 +61,23 @@ namespace TestFramework.Helper
         {
             return client.Execute(restRequest);
         }
+
+        public bool IsSuccessStatusCode(HttpStatusCode responseCode)
+        {
+            var numericResponse = (int)responseCode;
+
+            const int statusCodeOk = (int)HttpStatusCode.OK;
+
+            const int statusCodeBadRequest = (int)HttpStatusCode.BadRequest;
+
+            return numericResponse >= statusCodeOk &&
+                   numericResponse < statusCodeBadRequest;
+        }
+
+        public string DeserializeResponseToStringUsingJObject(RestResponse restResponse, string responseObj)
+        {
+            var jObject = JObject.Parse(restResponse.Content);
+            return jObject[responseObj]?.ToString();
+        }
     }
 }
