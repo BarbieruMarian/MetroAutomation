@@ -13,7 +13,7 @@ namespace TestProject.Pages
         #region Elements
         private IWebElement EnterItemTextbox => Driver.FindElement(By.XPath("//input[@id='input-checkout-article-id']"), 30);
         private IWebElement OkNumpadButton => Driver.FindElement(By.XPath("//button[@id='on-screen-keypad-key-ok']"), 30);
-        private IWebElement TotalButton => Driver.FindElement(By.XPath("//button[@id='btn-checkout-total']"), 30);
+        private IWebElement TotalButton => Driver.FindElement(By.XPath("//button[@id='payment_modal_button_subtotal']"), 30);
         private IWebElement ValidateItemAdded(string itemNumber) => Driver.FindElement(By.XPath($"//div//span[text()='{itemNumber}']"), 30);
         #endregion
 
@@ -34,6 +34,7 @@ namespace TestProject.Pages
 
         public bool IsAtBasket()
         {
+            Thread.Sleep(3000);
             Driver.WaitForElementToBeClickable(TotalButton);
             return TotalButton.Displayed;
         }

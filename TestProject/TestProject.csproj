@@ -21,7 +21,7 @@
     <PackageReference Include="MPOSAirUnitTestUtilities" Version="2.0.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="RestSharp" Version="108.0.1" />
-    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="105.0.5195.5200" />
+    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="109.0.5414.7400" />
     <PackageReference Include="SolidToken.SpecFlow.DependencyInjection" Version="3.9.3" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="Xunit.DependencyInjection" Version="8.5.0" />

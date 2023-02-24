@@ -27,14 +27,14 @@ namespace TestFramework.Test
         protected virtual void BeforeEach()
         {
             ConfigReader.InitializeSettings();
-            ExtentStart();
+            //ExtentStart();
             Driver = new WebDriverProxy(GetWebDriver());
 
         }
 
         protected virtual void AfterEach()
         {
-            extent.Flush();
+            //extent.Flush();
             Driver.Quit();
         }
 

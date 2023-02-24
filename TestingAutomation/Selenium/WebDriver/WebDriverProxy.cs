@@ -171,7 +171,7 @@ namespace TestFramework.Selenium.WebDriver
         //refactor this to work in paralel
         public override void SetLocalStorage()
         {
-            JSProxy.ExecuteScript("localStorage.setItem('workstationId','TESTWSTID001850');");
+            JSProxy.ExecuteScript("localStorage.setItem('workstationId','TESTWSTID013932');");
             Driver.Navigate().Refresh();
         }
 

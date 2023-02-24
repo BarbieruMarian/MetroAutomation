@@ -33,11 +33,11 @@
     "Token": "MjE1OThjZDktYjRhNi05MWI4LTNiMDUtNzVlMGNmODc3ZGY0"
   },
   "TestData": {
-    "Superviser": "001333813011",
+    "Superviser": "013210896011",
     "SuperviserPIN": "123",
     "Cashier": "001333813011",
     "CashierPIN": "123",
-    "Customer": "6200000100035815011056",
+    "Customer": "7240001300107067011065",
     "FiscalId": "299999998",
     "TradeId": "9"
     //"activeCustomerBarcode": "7240001300066480023065",

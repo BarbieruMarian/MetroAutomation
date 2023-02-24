@@ -9,23 +9,15 @@ using Xunit;
 
 namespace TestProject.Tests.Invoices.Base
 {
-    public class InvoicesBaseTest : BaseTest
+    public class LoginBaseTest : BaseTest
     {
-        public InvoicesBaseTest(IDriverType browserDriverType) : base(browserDriverType)
+        public LoginBaseTest(IDriverType browserDriverType) : base(browserDriverType)
         {
         }
 
         protected void Login(string supervisor, string customer)
         {
-            var loginPage = new Login(Driver);
-            loginPage.GoTo();
-            //Driver.MinimizeWindow();
-            //Driver.MaximizeWindow();
-            Assert.True(loginPage.IsAtLogin(), "The main page could not be loaded");
-            loginPage.LoginWithSuperviser(supervisor);
 
-            Assert.True(loginPage.IsAtCustomerLogin(), "The customer login page could not be loaded");
-            loginPage.LoginWithCustomer(customer);
         }
 
         protected string AddItemToBasketAndGetTransactionId(string itemID)
@@ -44,7 +36,7 @@ namespace TestProject.Tests.Invoices.Base
         protected void PayWithCash()
         {
             var paymentPage = new Payment(Driver);
-            var loginPage = new Login(Driver);
+            var loginPage = new Pages.Login(Driver);
             Assert.True(paymentPage.IsAtPayment(), "The payment page could not be loaded");
             paymentPage.AddCashPayment();
             Assert.True(paymentPage.WasPaymentSuccessful(), "The invoice popup was not loaded");
