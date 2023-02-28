@@ -19,6 +19,7 @@ namespace TestProject.Pages
         private IWebElement SearchItemInput => Driver.FindElement(By.XPath("//div[contains(@class, 'SearchBar__Form')]//input"));
         private IWebElement TotalButton => Driver.FindElement(By.XPath("//button[@id='payment_modal_button_subtotal']"), 30);
         private IWebElement ValidateItemAdded(string itemNumber) => Driver.FindElement(By.XPath($"//div[text() = '{itemNumber}']"), 30);
+        private IList<IWebElement> ValidateItemsAdded(string itemNumber) => Driver.GetAllElements(By.XPath($"//div[text() = '{itemNumber}']"), false, 30);
         private IWebElement TotalAmount => Driver.FindElement(By.XPath($"//div[contains(@class,'backgroundFormatter__Container')]//span"), 30);
         
         #endregion
@@ -33,12 +34,23 @@ namespace TestProject.Pages
             Thread.Sleep(1000);
         }
 
+        public void RepeatAddArticle(int numberOfTimes) 
+        { 
+            while(numberOfTimes > 0)
+            {
+                OkNumpadButton.Click();
+                numberOfTimes--;
+                Thread.Sleep(1000);
+            }
+        }
+
         public void RemoveItemFromBasket()
         {
             Driver.WaitForElementToBeClickable(RemoveItem);
             RemoveItem.Click();
             Thread.Sleep(1000);
             ConfirmRemoveItem.Click();
+            Thread.Sleep(1000);
         }
 
         public void SearchItem(string item)
@@ -70,8 +82,19 @@ namespace TestProject.Pages
             return ValidateItemAdded(itemNumber).Displayed;
         }
 
+        public bool ValidateItemsWereAdded(string itemNumber, int expectedOccurences)
+        {
+            var occurencesFound = ValidateItemsAdded(itemNumber).Count;
+            if (occurencesFound == expectedOccurences)
+            {
+                return true;
+            }
+            return false;
+        }
+
         public double GetTotalAmount()
         {
+            Thread.Sleep(1000);
             var amount = TotalAmount.Text;
             amount = amount.Replace("€", "");
             return double.Parse(amount);
