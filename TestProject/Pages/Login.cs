@@ -24,7 +24,7 @@ namespace TestProject.Pages
         private IWebElement PasswordBtn1 => Driver.FindElement(By.XPath("//button[@id='on-screen-keypad-key-1']"), 30);
         private IWebElement PasswordBtn2 => Driver.FindElement(By.XPath("//button[@id='on-screen-keypad-key-2']"), 30);
         private IWebElement InvalidUserBarcodeMessagePopup => Driver.FindElement(By.XPath("//div[contains(text(), 'invalid_barcode')]"), 30);
-        private IWebElement InvalidUserCredentialsPopup => Driver.FindElement(By.XPath("//div[contains(text(), 'account_signin_invalid_user_credentials')]"), 30);
+        private IWebElement InvalidUserCredentialsPopup => Driver.FindElement(By.XPath("//div[contains(text(), 'account_signin_invalid_user_credentials')]"), 0);
         private IWebElement CustomerAssertion => Driver.FindElement(By.XPath("//*[text()='Identificación Cliente ']"), 30);
 
         #endregion

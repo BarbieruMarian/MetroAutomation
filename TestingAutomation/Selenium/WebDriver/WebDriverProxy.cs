@@ -29,6 +29,16 @@ namespace TestFramework.Selenium.WebDriver
             JSProxy.ExecuteScript("arguments[0].click();", element);
         }
 
+        public override void ExecuteScript(string script, IWebElement element)
+        {
+            JSProxy.ExecuteScript(script, element);
+        }
+
+        public override void SetElementFromDisabledToEnabled(IWebElement element)
+        {
+            JSProxy.ExecuteScript("arguments[0].removeAttribute('disabled')", element);
+        }
+
         public override void JSClick(IWebElement element, double waitInSeconds = 20)
         {
             var oldTimeout = Driver.Manage().Timeouts().ImplicitWait;

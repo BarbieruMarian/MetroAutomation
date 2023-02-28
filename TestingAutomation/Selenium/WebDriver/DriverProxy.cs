@@ -38,5 +38,7 @@ namespace TestFramework.Selenium.WebDriver
         public abstract void WaitForElementToBeClickable(IWebElement element, int waitSeconds = 20);
         public abstract void WaitForElementToBeDisplayed(IWebElement element, int waitSeconds = 20);
         public abstract void SaveScreenshot(string screenshotPath);
+        public abstract void ExecuteScript(string script, IWebElement element);
+        public abstract void SetElementFromDisabledToEnabled(IWebElement element);
     }
 }

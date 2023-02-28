@@ -31,5 +31,7 @@ namespace TestFramework.Selenium.Interfaces
         IWebElement FindElement(By by, double waitSeconds = 20);
         IList<IWebElement> GetAllElements(By by, bool ignoreException = true, int waitInSeconds = 15);
         void SaveScreenshot(string screenshotPath);
+        void ExecuteScript(string script, IWebElement element);
+        void SetElementFromDisabledToEnabled(IWebElement element);
     }
 }
