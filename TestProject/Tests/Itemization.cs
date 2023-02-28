@@ -159,5 +159,55 @@ namespace TestProject.Tests
             //Step 5: Search for an item
             basket.SearchItem("item");
         }
+
+        [UnitTestUtilities.Attributes.CountryFact("ES")]
+        public void Check_Basket_Submenu_Functionality()
+        {
+            //Step 1: Navigate to client main page
+            var loginPage = new Login(Driver);
+            loginPage.GoTo();
+            Assert.True(loginPage.IsAtLogin(), "The main page could not be loaded");
+
+            //Step 2: Start the shift with a valid supervisor
+            var loginWithSupervisorResult = loginPage.LoginWithSuperviser(Config.Superviser, "123456");
+            Assert.True(loginWithSupervisorResult.success, loginWithSupervisorResult.message);
+
+            //Step 3: Scan a customer
+            Assert.True(loginPage.IsAtCustomerLogin(), "The customer login page could not be loaded");
+            var loginWithCustomerResult = loginPage.LoginWithCustomer(Config.Customer);
+            Assert.True(loginWithCustomerResult.success, loginWithCustomerResult.message);
+
+            //Step 4: Arrive at basket main page with that supervisor / customer 
+            var basket = new Basket(Driver);
+            Assert.True(basket.IsAtBasket(), "Basket Main Page was not loaded. Login failed.");
+
+            //Step 5: Go to basket submenu from the basket page
+            Assert.True(basket.IsBasketButtonPresent());
+        }
+
+        [UnitTestUtilities.Attributes.CountryFact("ES")]
+        public void Check_Basket_Invoice_Submenu_Functionality()
+        {
+            //Step 1: Navigate to client main page
+            var loginPage = new Login(Driver);
+            loginPage.GoTo();
+            Assert.True(loginPage.IsAtLogin(), "The main page could not be loaded");
+
+            //Step 2: Start the shift with a valid supervisor
+            var loginWithSupervisorResult = loginPage.LoginWithSuperviser(Config.Superviser, "123456");
+            Assert.True(loginWithSupervisorResult.success, loginWithSupervisorResult.message);
+
+            //Step 3: Scan a customer
+            Assert.True(loginPage.IsAtCustomerLogin(), "The customer login page could not be loaded");
+            var loginWithCustomerResult = loginPage.LoginWithCustomer(Config.Customer);
+            Assert.True(loginWithCustomerResult.success, loginWithCustomerResult.message);
+
+            //Step 4: Arrive at basket main page with that supervisor / customer 
+            var basket = new Basket(Driver);
+            Assert.True(basket.IsAtBasket(), "Basket Main Page was not loaded. Login failed.");
+
+            //Step 5: Go to invoice submenu from the basket page
+            Assert.True(basket.IsInvoiceButtonPresent());
+        }
     }
 }

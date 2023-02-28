@@ -21,7 +21,9 @@ namespace TestProject.Pages
         private IWebElement ValidateItemAdded(string itemNumber) => Driver.FindElement(By.XPath($"//div[text() = '{itemNumber}']"), 30);
         private IList<IWebElement> ValidateItemsAdded(string itemNumber) => Driver.GetAllElements(By.XPath($"//div[text() = '{itemNumber}']"), false, 30);
         private IWebElement TotalAmount => Driver.FindElement(By.XPath($"//div[contains(@class,'backgroundFormatter__Container')]//span"), 30);
-        
+        private IWebElement BasketButton => Driver.FindElement(By.XPath($"//button[@id='button-0']"), 30);
+        private IWebElement InvoiceButton => Driver.FindElement(By.XPath($"//button[@id='button-1']"), 30);
+
         #endregion
 
         #region Actions
@@ -98,6 +100,20 @@ namespace TestProject.Pages
             var amount = TotalAmount.Text;
             amount = amount.Replace("€", "");
             return double.Parse(amount);
+        }
+
+        public bool IsBasketButtonPresent()
+        {
+            var isPresent = BasketButton.Displayed;
+            BasketButton.Click();
+            return isPresent;
+        }
+
+        public bool IsInvoiceButtonPresent()
+        {
+            var isPresent = InvoiceButton.Displayed;
+            InvoiceButton.Click();
+            return isPresent;
         }
 
         public string GetTransactionID()
