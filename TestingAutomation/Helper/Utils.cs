@@ -45,5 +45,11 @@
                 .Sum(i => (int)char.GetNumericValue(reversed[i]) * (i % 2 == 0 ? 3 : 1));
             return (10 - sum % 10) % 10;
         }
+
+        public static int ExtractNumber(string input)
+        {
+            string numberString = new string(input.Where(c => Char.IsDigit(c)).ToArray());
+            return int.Parse(numberString);
+        }
     }
 }

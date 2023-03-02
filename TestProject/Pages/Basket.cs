@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using TestFramework.Helper;
 using TestFramework.Selenium.Interfaces;
 using TestProject.Pages.Base;
 
@@ -12,6 +13,9 @@ namespace TestProject.Pages
 
         #region Elements
         private IWebElement EnterItem => Driver.FindElement(By.XPath("//div[contains(@class,'BasketInputKeypad__Input')]//input"), 30);
+        private IWebElement Key2 => Driver.FindElement(By.XPath("//button[@id='keypad-key-2']"), 30);
+        private IWebElement Key7 => Driver.FindElement(By.XPath("//button[@id='keypad-key-7']"), 30);
+        private IWebElement KeyMultiply => Driver.FindElement(By.XPath("//button[@id='keypad-key-asterisk']"), 30);
         private IWebElement OkNumpadButton => Driver.FindElement(By.XPath("//button[@id='keypad-key-ok']"), 30);   
         private IWebElement RemoveItem => Driver.GetAllElements(By.XPath("//div[contains(@class,'RemoveLineButton')]")).FirstOrDefault();
         private IWebElement ConfirmRemoveItem => Driver.FindElement(By.XPath("//div[contains(@id,'remove_article_line')]"));
@@ -20,8 +24,15 @@ namespace TestProject.Pages
         private IWebElement TotalButton => Driver.FindElement(By.XPath("//button[@id='payment_modal_button_subtotal']"), 30);
         private IWebElement ValidateItemAdded(string itemNumber) => Driver.FindElement(By.XPath($"//div[text() = '{itemNumber}']"), 30);
         private IList<IWebElement> ValidateItemsAdded(string itemNumber) => Driver.GetAllElements(By.XPath($"//div[text() = '{itemNumber}']"), false, 30);
+        private IWebElement NumberOfArticles => Driver.FindElement(By.XPath($"//div[contains(@class, 'counterFormatter__LineValue')]"), 30);      
         private IWebElement TotalAmount => Driver.FindElement(By.XPath($"//div[contains(@class,'backgroundFormatter__Container')]//span"), 30);
-        private IWebElement BasketButton => Driver.FindElement(By.XPath($"//button[@id='button-0']"), 30);
+        private IWebElement BasketOptionsButton => Driver.FindElement(By.XPath($"//button[@id='button-0']"), 30);
+        private IWebElement DiscountButton => Driver.FindElement(By.XPath($"//button[@id='add-article']"), 30);
+        private IWebElement ToggleDiscountInput => Driver.FindElement(By.XPath($"//label[contains(@class, 'modeSwitch')]"), 30);
+        private IWebElement DiscountInput => Driver.FindElement(By.XPath($"//input[@name='input-keypad-basket-coupons']"), 30);
+        private IWebElement? OkNumpadButtonForDiscount => Driver.GetAllElements(By.XPath("//button[@id='keypad-key-ok']")).FirstOrDefault();
+
+
         private IWebElement InvoiceButton => Driver.FindElement(By.XPath($"//button[@id='button-1']"), 30);
 
         #endregion
@@ -65,6 +76,23 @@ namespace TestProject.Pages
             Thread.Sleep(500);
         }
 
+        public int GetNumberOfArticles()
+        {
+            return Utils.ExtractNumber(NumberOfArticles.Text);
+        }
+
+        public void InsertNumberOfArticles(int numberOfArticles, string articleToInsert)
+        {
+            EnterItem.SendKeys(numberOfArticles.ToString());
+            Thread.Sleep(1000);
+            KeyMultiply.Click();
+            Thread.Sleep(1000);
+            EnterItem.SendKeys(articleToInsert);
+            Thread.Sleep(1000);
+            OkNumpadButton.Click();
+            Thread.Sleep(1000);
+        }
+
         public void PressTotal()
         {
             Thread.Sleep(1750);
@@ -104,8 +132,8 @@ namespace TestProject.Pages
 
         public bool IsBasketButtonPresent()
         {
-            var isPresent = BasketButton.Displayed;
-            BasketButton.Click();
+            var isPresent = BasketOptionsButton.Displayed;
+            BasketOptionsButton.Click();
             return isPresent;
         }
 
@@ -124,6 +152,20 @@ namespace TestProject.Pages
             var transactionID = url.Substring(startIndex + transaction.Length);
 
             return transactionID;
+        }
+
+        public void AddDiscountCoupon(string couponID)
+        {
+            BasketOptionsButton.Click();
+            Thread.Sleep(1000);
+            DiscountButton.Click();
+            Thread.Sleep(1000);
+            ToggleDiscountInput.Click();
+            Thread.Sleep(1000);
+            DiscountInput.SendKeys(couponID);
+            Thread.Sleep(1000);
+            OkNumpadButtonForDiscount.Click();
+            Thread.Sleep(1000);
         }
         #endregion
     }

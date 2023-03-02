@@ -16,7 +16,7 @@ namespace TestProject.Pages
         #region Elements
         private IWebElement StartShiftButton => Driver.FindElement(By.XPath("//button[@id='btn-login-signIn']"));
         private IWebElement ButtonLoginLayout => Driver.FindElement(By.XPath("//button[@id='btn-login-layout']"), 30);
-        private IWebElement ClientButtonLoginLayout => Driver.GetAllElements(By.XPath("//div[contains(@class, 'ModeSwitch')]")).FirstOrDefault();
+        private IWebElement? ClientButtonLoginLayout => Driver.GetAllElements(By.XPath("//div[contains(@class, 'ModeSwitch')]")).FirstOrDefault();
         private IWebElement Body => Driver.FindElement(By.XPath(".//body"), 30);
         private IWebElement EmployeeIDInput => Driver.FindElement(By.XPath("//div[contains(@class, 'InputContainer')]//input"), 30);
         private IWebElement CustomerIDInput => Driver.FindElement(By.XPath("//input[@id='customerBarcode']"), 30);
