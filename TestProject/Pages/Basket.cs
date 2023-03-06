@@ -16,6 +16,8 @@ namespace TestProject.Pages
         private IWebElement Key2 => Driver.FindElement(By.XPath("//button[@id='keypad-key-2']"), 30);
         private IWebElement Key7 => Driver.FindElement(By.XPath("//button[@id='keypad-key-7']"), 30);
         private IWebElement KeyMultiply => Driver.FindElement(By.XPath("//button[@id='keypad-key-asterisk']"), 30);
+        private IWebElement KeyErase => Driver.FindElement(By.XPath("//button[@id='keypad-key-erase']"), 30);
+        private IWebElement KeyCancel => Driver.FindElement(By.XPath("//button[@id='keypad-key-cancel']"), 30);    
         private IWebElement OkNumpadButton => Driver.FindElement(By.XPath("//button[@id='keypad-key-ok']"), 30);   
         private IWebElement RemoveItem => Driver.GetAllElements(By.XPath("//div[contains(@class,'RemoveLineButton')]")).FirstOrDefault();
         private IWebElement ConfirmRemoveItem => Driver.FindElement(By.XPath("//div[contains(@id,'remove_article_line')]"));
@@ -78,6 +80,7 @@ namespace TestProject.Pages
 
         public int GetNumberOfArticles()
         {
+            Thread.Sleep(2000);
             return Utils.ExtractNumber(NumberOfArticles.Text);
         }
 
@@ -91,6 +94,31 @@ namespace TestProject.Pages
             Thread.Sleep(1000);
             OkNumpadButton.Click();
             Thread.Sleep(1000);
+        }
+
+        public void UseKeypad()
+        {
+            Key2.Click();
+            Thread.Sleep(1000);
+            Key7.Click();
+            Thread.Sleep(1000);
+        }
+
+        public void EraseLastKey()
+        {
+            KeyErase.Click();
+            Thread.Sleep(1000);
+        }
+
+        public void CancelKeysEntered()
+        {
+            KeyCancel.Click();
+            Thread.Sleep(1000);
+        }
+
+        public string GetBasketKeypadIntroducedValues()
+        {
+            return EnterItem.GetAttribute("value"); 
         }
 
         public void PressTotal()

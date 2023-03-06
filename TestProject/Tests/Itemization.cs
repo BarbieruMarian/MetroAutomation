@@ -271,5 +271,91 @@ namespace TestProject.Tests
             basket.AddDiscountCoupon(discountCoupon);
             //We will need to properly assert the discount in UI after UI is working properly 
         }
+
+        [UnitTestUtilities.Attributes.CountryFact("ES")]
+        public void Check_Keypad_Numpads_Functionality()
+        {
+            //Step 1: Navigate to client main page
+            var loginPage = new Login(Driver);
+            loginPage.GoTo();
+            Assert.True(loginPage.IsAtLogin(), "The main page could not be loaded");
+
+            //Step 2: Start the shift with a valid supervisor
+            var loginWithSupervisorResult = loginPage.LoginWithSuperviser(Config.Superviser, "123456");
+            Assert.True(loginWithSupervisorResult.success, loginWithSupervisorResult.message);
+
+            //Step 3: Scan a customer
+            Assert.True(loginPage.IsAtCustomerLogin(), "The customer login page could not be loaded");
+            var loginWithCustomerResult = loginPage.LoginWithCustomer(Config.Customer);
+            Assert.True(loginWithCustomerResult.success, loginWithCustomerResult.message);
+
+            //Step 4: Arrive at basket main page with that supervisor / customer 
+            var basket = new Basket(Driver);
+            Assert.True(basket.IsAtBasket(), "Basket Main Page was not loaded. Login failed.");
+
+            //Step 5: Check that keypad numbers works by pressing the keys 2 and 7
+            var expectedkeysPressed = "27";
+            basket.UseKeypad();
+            var actualKeysPressed = basket.GetBasketKeypadIntroducedValues();
+            Assert.True(actualKeysPressed == expectedkeysPressed, $"Expected key pressed was {expectedkeysPressed}, but actual key pressed is: {actualKeysPressed}");
+        }
+
+        [UnitTestUtilities.Attributes.CountryFact("ES")]
+        public void Check_Keypad_Erase_Character()
+        {
+            //Step 1: Navigate to client main page
+            var loginPage = new Login(Driver);
+            loginPage.GoTo();
+            Assert.True(loginPage.IsAtLogin(), "The main page could not be loaded");
+
+            //Step 2: Start the shift with a valid supervisor
+            var loginWithSupervisorResult = loginPage.LoginWithSuperviser(Config.Superviser, "123456");
+            Assert.True(loginWithSupervisorResult.success, loginWithSupervisorResult.message);
+
+            //Step 3: Scan a customer
+            Assert.True(loginPage.IsAtCustomerLogin(), "The customer login page could not be loaded");
+            var loginWithCustomerResult = loginPage.LoginWithCustomer(Config.Customer);
+            Assert.True(loginWithCustomerResult.success, loginWithCustomerResult.message);
+
+            //Step 4: Arrive at basket main page with that supervisor / customer 
+            var basket = new Basket(Driver);
+            Assert.True(basket.IsAtBasket(), "Basket Main Page was not loaded. Login failed.");
+
+            //Step 5: Check that keypad numbers works by pressing the keys 2 and 7 and then deleting the 7 key
+            var expectedkeysPressed = "2";
+            basket.UseKeypad();
+            basket.EraseLastKey();
+            var actualKeysPressed = basket.GetBasketKeypadIntroducedValues();
+            Assert.True(actualKeysPressed == expectedkeysPressed, $"Expected key pressed was {expectedkeysPressed}, but actual key pressed is: {actualKeysPressed}");
+        }
+
+        [UnitTestUtilities.Attributes.CountryFact("ES")]
+        public void Check_Keypad_Cancel_Entered_Characters()
+        {
+            //Step 1: Navigate to client main page
+            var loginPage = new Login(Driver);
+            loginPage.GoTo();
+            Assert.True(loginPage.IsAtLogin(), "The main page could not be loaded");
+
+            //Step 2: Start the shift with a valid supervisor
+            var loginWithSupervisorResult = loginPage.LoginWithSuperviser(Config.Superviser, "123456");
+            Assert.True(loginWithSupervisorResult.success, loginWithSupervisorResult.message);
+
+            //Step 3: Scan a customer
+            Assert.True(loginPage.IsAtCustomerLogin(), "The customer login page could not be loaded");
+            var loginWithCustomerResult = loginPage.LoginWithCustomer(Config.Customer);
+            Assert.True(loginWithCustomerResult.success, loginWithCustomerResult.message);
+
+            //Step 4: Arrive at basket main page with that supervisor / customer 
+            var basket = new Basket(Driver);
+            Assert.True(basket.IsAtBasket(), "Basket Main Page was not loaded. Login failed.");
+
+            //Step 5: Check that keypad numbers works by pressing the keys 2 and 7 and then pressing the C key to cancel
+            var expectedkeysPressed = "";
+            basket.UseKeypad();
+            basket.CancelKeysEntered();
+            var actualKeysPressed = basket.GetBasketKeypadIntroducedValues();
+            Assert.True(actualKeysPressed == expectedkeysPressed, $"Expected key pressed was {expectedkeysPressed}, but actual key pressed is: {actualKeysPressed}");
+        }
     }
 }
